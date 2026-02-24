@@ -1,0 +1,16 @@
+[
+    {
+        "task_id": 1,
+        "task_description": "Study Python",
+        "creation_date": "2026-02-24 00:35:24",
+        "modification_date": "2026-02-24 00:36:16",
+        "status": "in progress"
+    },
+    {
+        "task_id": 2,
+        "task_description": "Study Data Structures",
+        "creation_date": "2026-02-24 00:35:39",
+        "modification_date": "2026-02-24 00:35:39",
+        "status": "to do"
+    }
+]
