@@ -18,6 +18,7 @@ def save_tasks(task):
     file.write_text(contents)
 
 def add_task(description): 
+    """Creates a new task and adds it ti the json file"""
     tasks_list =load_tasks()
     
     new_task = {
@@ -33,6 +34,7 @@ def add_task(description):
     
 
 def show_tasks(): 
+    """Displays current task list"""
     tasks_list = load_tasks()
     if not tasks_list: 
         print ('Task list is empty!')
@@ -41,6 +43,7 @@ def show_tasks():
         print(f'Task ID: {task["task_id"]} - Status: {task["status"]} - Description: {task["task_description"]} - Created: {task["creation_date"]} - Last modified: {task["modification_date"]}')
 
 def update_task(task_id, new_status):
+    """Updates a new status fue an existing task"""
     tasks_list = load_tasks()
     if new_status.lower() not in ['to do', 'in progress','done','not done']: 
         print("Status not valid!")
@@ -57,6 +60,7 @@ def update_task(task_id, new_status):
             return 
         
 def delete_task(task_id):
+    """Deletes selected task list from json file"""
     tasks_list = load_tasks()
     for task in tasks_list: 
         if task_id == task["task_id"]:
@@ -66,8 +70,8 @@ def delete_task(task_id):
             return
     print("Task ID not found!")
 
-command = sys.argv[1]
 
+command = sys.argv[1]
 
 if command == "add": 
     try:
@@ -86,3 +90,5 @@ elif command == "delete":
         delete_task(int(sys.argv[2]))
     except IndexError:
         print("Task ID missing!")
+else: 
+    print("Command not found!")
