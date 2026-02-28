@@ -15,9 +15,10 @@ def count_words(text):
     return Counter(words)
 
 def top_ten_words(counter): 
-    for word, count in counter.most_common(10): 
-        print(f"The word '{word}' is repeated {count} times.")
+    return counter.most_common(10)
+        
 
 text_content = load_text()
 counting_words = count_words(text_content)
-top_ten_words(counting_words)
+for word, count in top_ten_words(counting_words):
+    print (f"The word '{word}' is repeated {count} times. ")
