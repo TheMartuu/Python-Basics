@@ -5,4 +5,8 @@ Copyright Disclaimer: - Under section 107 of the copyright Act 1976, allowance i
 
 This program takes a text file and returns a list of the ten most repeated words. 
 
+# Tests 
 
+In order to test the code using pytest, make sure to test from the root folder 
+
+cd to the root folder 'word-count' and use the command: 'python3 -m pytest tests'
