@@ -71,41 +71,42 @@ def delete_contact(name):
             print("Contact deleted!")
             return 
     print("Contact not found!")
-     
-active = True
 
-message = "Welcome to the contact book! "
-print(message)
-prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
+if __name__ == "__main__":     
+    active = True
 
-while active:
-    options = [1,2,3,4,5]
-    try: 
-        if int(prompt_user_option) == 1: 
-            display_contacts()
-            prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
+    message = "Welcome to the contact book! "
+    print(message)
+    prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
 
-        elif int(prompt_user_option) == 2: 
-            prompt_new_name = input("Insert a name for the new contact: ")
-            prompt_new_number = input("Insert a new phone for the contact: ")
-            add_contact(prompt_new_name,prompt_new_number)
-            prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
-        
-        elif int(prompt_user_option) == 3: 
-            prompt_edit_name = input("Select what contact do you wish to edit: ")
-            prompt_edit_number = input("Add the new number: ")
-            update_contact(prompt_edit_name,prompt_edit_number)
-            prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
-        
-        elif int(prompt_user_option) == 4: 
-            prompt_delete_name = input("Select the name for the contact to be deleted: ")
-            delete_contact(prompt_delete_name)
-        
-        elif int(prompt_user_option) == 5:
-            active = False
-            print('Bye!') 
-        else:
+    while active:
+        options = [1,2,3,4,5]
+        try: 
+            if int(prompt_user_option) == 1: 
+                display_contacts()
+                prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
+
+            elif int(prompt_user_option) == 2: 
+                prompt_new_name = input("Insert a name for the new contact: ")
+                prompt_new_number = input("Insert a new phone for the contact: ")
+                add_contact(prompt_new_name,prompt_new_number)
+                prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
+            
+            elif int(prompt_user_option) == 3: 
+                prompt_edit_name = input("Select what contact do you wish to edit: ")
+                prompt_edit_number = input("Add the new number: ")
+                update_contact(prompt_edit_name,prompt_edit_number)
+                prompt_user_option = input("Please enter an option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
+            
+            elif int(prompt_user_option) == 4: 
+                prompt_delete_name = input("Select the name for the contact to be deleted: ")
+                delete_contact(prompt_delete_name)
+            
+            elif int(prompt_user_option) == 5:
+                active = False
+                print('Bye!') 
+            else:
+                print('Option not valid!')
+        except ValueError:
             print('Option not valid!')
-    except ValueError:
-        print('Option not valid!')
-        prompt_user_option = input("Please enter a valid option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
+            prompt_user_option = input("Please enter a valid option:\n 1: Show contacts\n 2: Add a new contact\n 3: Edit an existing contact: \n 4: Delete an existing contact \n 5. Exit\n")
