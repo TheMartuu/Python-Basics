@@ -75,23 +75,23 @@ def show_winner():
 
 
                 
-
-active = True
-menu_options = 'Welcome to the poll.'
-while active: 
-    menu_options = str(input('Please enter options: \n1. Register vote \n2. Read results \n3. Check winner\n4. Exit \n'))
-    if menu_options == '1':
-        prompt_new_id = input("Please enter your ID: ")
-        if get_id(prompt_new_id): 
-            prompt_new_vote = input("Please enter your candidate: ")
-            register_vote(prompt_new_vote)
-    elif menu_options == '2':
-        show_total_results()
-    elif menu_options == '3':
-        show_winner()
-    elif menu_options == '4':
-        print('Bye!')
-        active = False
-    else:
-        print('Option not valid!')
+if __name__ == '__main__':
+    active = True
+    menu_options = 'Welcome to the poll.'
+    while active: 
+        menu_options = str(input('Please enter options: \n1. Register vote \n2. Read results \n3. Check winner\n4. Exit \n'))
+        if menu_options == '1':
+            prompt_new_id = input("Please enter your ID: ")
+            if get_id(prompt_new_id): 
+                prompt_new_vote = input("Please enter your candidate: ")
+                register_vote(prompt_new_vote)
+        elif menu_options == '2':
+            show_total_results()
+        elif menu_options == '3':
+            show_winner()
+        elif menu_options == '4':
+            print('Bye!')
+            active = False
+        else:
+            print('Option not valid!')
     
