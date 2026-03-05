@@ -44,9 +44,9 @@ def add_contact(name,phone,filepath=file):
         
     
 
-def update_contact(name,phone): 
+def update_contact(name,phone,filepath=file): 
     """updates an existing contact"""
-    contact_list = load_contacts()
+    contact_list = load_contacts(filepath)
     for contact in contact_list: 
         if contact["name"] == name: 
             contact["phone"] = phone
@@ -55,10 +55,10 @@ def update_contact(name,phone):
             return
     print("Contact not found! ")
 
-def delete_contact(name):
+def delete_contact(name,filepath=file):
     """deletes an existing contact"""
     name = name.title()
-    contact_list = load_contacts()
+    contact_list = load_contacts(filepath)
     for contact in contact_list: 
         if contact["name"] == name: 
             contact_list.remove(contact)
