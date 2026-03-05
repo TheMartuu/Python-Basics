@@ -3,20 +3,20 @@ from pathlib import Path
 
 file = Path('contacts.json')
 
-def load_contacts(): 
+def load_contacts(filepath=file): 
     """checks if there's an existing file or creates another one if not"""
-    if file.exists():
-        with open(file,"r",encoding="utf-8") as f: 
+    if filepath.exists():
+        with open(filepath, "r", encoding="utf-8") as f: 
             try:
                 return json.load(f)
             except json.JSONDecodeError:
                 return []
     return []
 
-def save_contact(contacts): 
+def save_contact(contacts,filepath=file): 
     """converts data and saves contact in the json file"""
-    with open(file,"w",encoding="utf-8") as f: 
-        json.dump(contacts,f,ensure_ascii=False,indent=2)
+    with open(filepath, "w", encoding="utf-8") as f: 
+        json.dump(contacts, f, ensure_ascii=False, indent=2)
 
 def display_contacts(): 
     """Displays current contacts in json file"""
@@ -28,25 +28,20 @@ def display_contacts():
         print (f"Name: {contact['name']} - Phone: {contact['phone']}")
 
 
-def add_contact(name,phone): 
+def add_contact(name,phone,filepath=file): 
     """adds contact's name and phone to the json file"""
     """if a contact already exists, it will not be saved"""
-    contact_list = load_contacts()
-
+    contact_list = load_contacts(filepath)
     name = name.title()
 
-    if any(contact["name"]== name for contact in contact_list):
-        print("The contact already exists!")
-        return 
+    if any(contact["name"] == name for contact in contact_list):
+        return None  # contacto ya existe
     
-    else: 
-        new_contact = {
-        "name" : name,
-        "phone" : phone
-    }
-        contact_list.append(new_contact)
-        save_contact(contact_list)
-        print("Contact saved!")
+    new_contact = {"name": name, "phone": phone}
+    contact_list.append(new_contact)
+    save_contact(contact_list, filepath)
+    return new_contact
+        
     
 
 def update_contact(name,phone): 
