@@ -62,7 +62,7 @@ def delete_contact(name,filepath=file):
     for contact in contact_list: 
         if contact["name"] == name: 
             contact_list.remove(contact)
-            save_contact(contact_list)
+            save_contact(contact_list,filepath)
             print("Contact deleted!")
             return 
     print("Contact not found!")
