@@ -50,7 +50,7 @@ def update_contact(name,phone,filepath=file):
     for contact in contact_list: 
         if contact["name"] == name: 
             contact["phone"] = phone
-            save_contact(contact_list)
+            save_contact(contact_list,filepath)
             print("New contact data saved!")
             return
     print("Contact not found! ")
