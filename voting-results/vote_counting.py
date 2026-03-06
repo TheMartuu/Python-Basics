@@ -34,9 +34,9 @@ def save_candidate(candidates_list,filepath=candidates_file):
     with open (filepath,'w',encoding="utf-8") as f: 
         json.dump(candidates_list,f,ensure_ascii=False,indent=2)
 
-def get_id(new_voter_id,filepath=candidates_file):
+def get_id(new_voter_id,filepath=people_ids_file):
     """Validates IDs before voting"""
-    voter_ids_list = load_ids()
+    voter_ids_list = load_ids(filepath)
     if len(new_voter_id) ==  8: 
         if new_voter_id not in voter_ids_list: 
             voter_ids_list.add(new_voter_id)
