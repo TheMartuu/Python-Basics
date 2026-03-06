@@ -60,15 +60,15 @@ def register_vote(candidate,filepath=candidates_file):
                 return 
     print("Candidate not found!")
 
-def show_total_results():
+def show_total_results(filepath=candidates_file):
     """Reads json file and displays total votes"""
-    candidates_list = load_candidates_list()
+    candidates_list = load_candidates_list(filepath)
     for candidate in candidates_list:
         print(f"{candidate['name']}: has {candidate['votes']} votes.")
 
-def show_winner():
+def show_winner(filepath=candidates_file):
     """Displays the most voted candidate"""
-    candidates_list = load_candidates_list()
+    candidates_list = load_candidates_list(filepath)
     winner = (max(candidates_list, key=lambda c: c["votes"]))
     print(f"The winner is {winner['name']} with {winner['votes']} votes!")
 
