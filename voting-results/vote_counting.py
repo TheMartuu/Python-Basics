@@ -34,13 +34,13 @@ def save_candidate(candidates_list,filepath=candidates_file):
     with open (filepath,'w',encoding="utf-8") as f: 
         json.dump(candidates_list,f,ensure_ascii=False,indent=2)
 
-def get_id(new_voter_id):
+def get_id(new_voter_id,filepath=candidates_file):
     """Validates IDs before voting"""
     voter_ids_list = load_ids()
     if len(new_voter_id) ==  8: 
         if new_voter_id not in voter_ids_list: 
             voter_ids_list.add(new_voter_id)
-            save_new_id(voter_ids_list)
+            save_new_id(voter_ids_list,filepath)
             return True
         else: 
             print("That ID is already registered, you cannot vote twice!")
