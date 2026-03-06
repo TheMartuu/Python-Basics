@@ -53,11 +53,11 @@ def register_vote(candidate,filepath=candidates_file):
     """Registers votes in the json file"""
     candidates_list = load_candidates_list(filepath)
     for register in candidates_list:
-            register['name'] == candidate
-            register['votes'] += 1
-            save_candidate(candidates_list,filepath)
-            print("Vote registered!")
-            return register
+            if register['name'] == candidate:
+                register['votes'] += 1
+                save_candidate(candidates_list,filepath)
+                print("Vote registered!")
+                return 
     print("Candidate not found!")
 
 def show_total_results():
