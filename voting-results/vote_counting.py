@@ -71,6 +71,7 @@ def show_winner(filepath=candidates_file):
     candidates_list = load_candidates_list(filepath)
     winner = (max(candidates_list, key=lambda c: c["votes"]))
     print(f"The winner is {winner['name']} with {winner['votes']} votes!")
+    return winner
 
 
                 
