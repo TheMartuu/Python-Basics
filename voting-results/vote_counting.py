@@ -4,36 +4,35 @@ from pathlib import Path
 candidates_file = Path('candidates.json')
 people_ids_file = Path('people_ids_file.json')
 
-def load_ids():
+def load_ids(filepath=people_ids_file):
     """loads file with people's ids if exists or creates another one if not"""
-    if people_ids_file.exists():
-        with open(people_ids_file,'r',encoding="utf-8") as f: 
+    if filepath.exists():
+        with open(filepath,'r',encoding="utf-8") as f: 
             try: 
                 return set(json.load(f))
             except json.JSONDecodeError:
                 return set()
     return set()
 
-def save_new_id(new_id): 
+def save_new_id(new_id,filepath =people_ids_file): 
     """saves new ID"""
-    with open (people_ids_file,'w',encoding="utf-8") as f: 
+    with open (filepath,'w',encoding="utf-8") as f: 
         json.dump(list(new_id),f,ensure_ascii=False,indent=2)
 
-def save_candidate(candidates_list): 
-    """saves new vote"""
-    with open (candidates_file,'w',encoding="utf-8") as f: 
-        json.dump(candidates_list,f,ensure_ascii=False,indent=2)
-
-def load_candidates_list(): 
+def load_candidates_list(filepath=candidates_file): 
     """loads file with candidates if exists or creates another one if not"""
-    if candidates_file.exists():
-        with open(candidates_file,'r',encoding="utf-8") as f: 
+    if filepath.exists():
+        with open(filepath,'r',encoding="utf-8") as f: 
             try: 
                 return json.load(f)
             except json.JSONDecodeError:
                 return []
     return []
 
+def save_candidate(candidates_list,filepath=candidates_file): 
+    """saves new vote"""
+    with open (filepath,'w',encoding="utf-8") as f: 
+        json.dump(candidates_list,f,ensure_ascii=False,indent=2)
 
 def get_id(new_voter_id):
     """Validates IDs before voting"""
@@ -50,15 +49,15 @@ def get_id(new_voter_id):
         print("ID not valid!")
         return False
 
-def register_vote(candidate): 
+def register_vote(candidate,filepath=candidates_file): 
     """Registers votes in the json file"""
-    candidates_list = load_candidates_list()
+    candidates_list = load_candidates_list(filepath)
     for register in candidates_list:
             register['name'] == candidate
             register['votes'] += 1
-            save_candidate(candidates_list)
+            save_candidate(candidates_list,filepath)
             print("Vote registered!")
-            return 
+            return register
     print("Candidate not found!")
 
 def show_total_results():
