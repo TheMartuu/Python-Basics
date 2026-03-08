@@ -31,6 +31,7 @@ def add_task(description,filepath=file):
     tasks_list.append(new_task)
     save_tasks(tasks_list,filepath)
     print('Task added to list!')
+    return new_task
     
 
 def show_tasks(filepath=file): 
@@ -71,9 +72,11 @@ def delete_task(task_id,filepath=file):
     print("Task ID not found!")
 
 
-command = sys.argv[1]
+
 
 if __name__ == "__main__":
+
+    command = sys.argv[1]
     if command == "add": 
         try:
             add_task(sys.argv[2])
