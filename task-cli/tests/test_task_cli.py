@@ -1,5 +1,5 @@
 import pytest 
-from task_cli import save_tasks,load_tasks,add_task,update_task,delete_task
+from task_cli import load_tasks,add_task,update_task,delete_task,get_task_by_id
 
 def test_add_tasks(tmp_path):
     """Checks if a task was added to task file"""
@@ -29,3 +29,17 @@ def test_delete_task(tmp_path):
     delete_task(1,test_file)
     task_list = load_tasks(test_file)
     assert len(task_list) == 0
+
+def test_show_existing_task(tmp_path):
+    """Checks if an existing task id exists returns a True value"""
+    test_file = tmp_path / "tasks.json"
+    add_task("Test task", test_file)
+    result = get_task_by_id(1, test_file)
+    assert result != False
+    
+def test_show_not_existing_task(tmp_path):
+    """Checks if a not existing task id exists returns a False value"""
+    test_file = tmp_path / "tasks.json"
+    add_task("Test task", test_file)
+    result = get_task_by_id(99, test_file)
+    assert result == False
