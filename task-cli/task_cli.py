@@ -41,7 +41,7 @@ def show_tasks(filepath=file):
         print ('Task list is empty!')
         return
     for task in tasks_list: 
-        print(f'Task ID: {task["task_id"]} - Status: {task["status"]} - Description: {task["task_description"]} - Created: {task["creation_date"]} - Last modified: {task["modification_date"]}')
+        print(f'Task ID: {task["task_id"]}\n- Status: {task["status"]}\n- Description: {task["task_description"]}\n- Created: {task["creation_date"]}\n- Last modified: {task["modification_date"]}\n')
 
 def update_task(task_id, new_status,filepath=file):
     """Updates a new status fue an existing task"""
@@ -71,6 +71,14 @@ def delete_task(task_id,filepath=file):
             return
     print("Task ID not found!")
 
+def get_task_by_id(task_id, filepath=file):
+    tasks_list = load_tasks(filepath)
+    for task in tasks_list:
+        if task["task_id"] == task_id:
+            print(f'Task ID: {task["task_id"]}\n- Status: {task["status"]}\n- Description: {task["task_description"]}\n- Created: {task["creation_date"]}\n- Last modified: {task["modification_date"]}\n')
+            return task
+    return False
+
 
 
 
@@ -94,5 +102,11 @@ if __name__ == "__main__":
             delete_task(int(sys.argv[2]))
         except IndexError:
             print("Task ID missing!")
+    elif command == "search": 
+        try:
+            get_task_by_id(int(sys.argv[2]))
+        except IndexError:
+            print("Task ID not valid or missing!")
+        
     else: 
         print("Command not found!")
