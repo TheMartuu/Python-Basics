@@ -66,9 +66,9 @@ class Collection:
         for book in self.books: 
             if book.genre.lower() == filter_category.lower(): 
                 results.append(book)
-            else: 
-                print("Genre not found!")
-                return 
+        else: 
+            print("Genre not found!")
+            return 
 
     def filter_by_year(self,filter_year):
         """Filters books by year"""
@@ -76,9 +76,9 @@ class Collection:
         for book in self.books: 
             if book.year.lower() == filter_year: 
                 results.append(book)
-            else: 
-                print("Year not found!")
-                return
+        else: 
+            print("Year not found!")
+            return
 
 if __name__== "__main__":
     collection = Collection()
