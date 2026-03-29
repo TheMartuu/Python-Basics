@@ -60,25 +60,31 @@ class Collection:
         for book in self.books:
             print(f"Title: {book.title}\nGenre: {book.genre}\nYear: {book.year}\nRating: {book.rating}\n-------------------------------")
     
-    def filter_by_genre(self,filter_category): 
+    def filter_by_genre(self, filter_category): 
         """Filters books by genre"""
         results = []
         for book in self.books: 
             if book.genre.lower() == filter_category.lower(): 
                 results.append(book)
-        else: 
+        
+        if not results:
             print("Genre not found!")
-            return 
+            return
+        
+        return results
 
     def filter_by_year(self,filter_year):
         """Filters books by year"""
         results = []
         for book in self.books: 
-            if book.year.lower() == filter_year: 
+            if book.year == filter_year: 
                 results.append(book)
-        else: 
+        
+        if not results:
             print("Year not found!")
             return
+        
+        return results
 
 if __name__== "__main__":
     collection = Collection()
@@ -86,24 +92,37 @@ if __name__== "__main__":
     
     print("Welcome to the book collection!")
     while active: 
-        prompt_option = str(input("What do you want to do?: \n1. View collection \n2. Add a Book \n3. Filter by genre \n4. Filter by year \n5. Exit \nSelected option:"))
+        prompt_option = str(input("What do you want to do?: \n1. View collection \n2. Add a Book \n3. Filter by genre \n4. Filter by year \n5. Exit \nSelected option: "))
 
         if prompt_option == "1": 
             collection.display_book_collection()
+
         elif prompt_option == "2": 
             prompt_title = input("Enter book title: ")
             prompt_genre = input("Enter genre: ")
             prompt_year = input("Enter year: ")
             prompt_rating = input("Enter rating: ")
             collection.add_book_to_collection(prompt_title,prompt_genre,prompt_year,prompt_rating)
+
         elif prompt_option == "3": 
             prompt_genre = input("Enter genre: ")
-            collection.filter_by_genre(prompt_genre)
+            results = collection.filter_by_genre(prompt_genre)
+            if results:
+                print(f"-----Filter results by genre '{prompt_genre.upper()}': -----")
+                for result in results:
+                    print(f"-Title: {result.title}\n-Year: {result.year}\n-Rating: {result.rating}\n")
+
         elif prompt_option == "4": 
             prompt_year = input("Enter year: ")
-            collection.filter_by_year(prompt_year)
+            results = collection.filter_by_year(prompt_year)
+            if results:
+                print(f"-----Filter results by year '{prompt_year}': -----")
+            for result in results:
+                print(f"-Title: {result.title}\n-Genre: {result.genre}\n-Rating: {result.rating}\n")
+
         elif prompt_option == "5":
             print("Bye!")
             active = False
+            
         else: 
             print("Option not found! Please try again")
